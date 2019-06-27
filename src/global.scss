@@ -1,0 +1,28 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+h1 {
+  font-family: sans-serif;
+}
+
+.side-nav {
+  &__list {
+    list-style: none;
+  }
+
+  &__item {
+    margin: 1rem 0;
+  }
+
+  &__link {
+    color: #000;
+    text-decoration: none;
+  }
+}

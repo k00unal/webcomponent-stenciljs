@@ -1,7 +1,7 @@
 import { Config } from "@stencil/core";
 import { sass } from "@stencil/sass";
 import { postcss } from "@stencil/postcss";
-import * as autoprefixer from "autoprefixer";
+import autoprefixer from "autoprefixer";
 
 export const config: Config = {
   namespace: "webcomponent-stenciljs",
@@ -28,5 +28,6 @@ export const config: Config = {
         })
       ]
     })
-  ]
+  ],
+  globalStyle: "src/global.scss"
 };
