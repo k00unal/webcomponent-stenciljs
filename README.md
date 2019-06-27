@@ -2,156 +2,54 @@
 
 Source code For tutorial for creating Web Components with Stencil js
 
-## Why Stencil?
+# @stencil/sass
 
-Stencil is a new approach to a popular idea: building fast and feature-rich apps in the browser. Stencil was created to take advantage of major new capabilities available natively in the browser, such as Custom Elements v1, enabling developers to ship far less code and build faster apps that are compatible with any and all frameworks.
+This package is used to easily precompile Sass files within Stencil components. Internally this plugin uses a pure JavaScript implementation of [Sass](https://www.npmjs.com/package/sass). Please see the
+[Behavioral Differences from Ruby Sass](https://www.npmjs.com/package/sass#behavioral-differences-from-ruby-sass) doc if issues have surfaced since upgrading from previous versions which used used the `node-sass` implementation.
 
-Stencil is also a solution to organizations and library authors struggling to build reusable components across a diverse spectrum of frontend frameworks, each with their own component system. Stencil components work in Angular, React, Ember, and Vue as well as they work with jQuery or with no framework at all, because they are just plain HTML elements.
+First, npm install within the project:
 
-Compared to using Custom Elements directly, inside of every Stencil component is an efficient Virtual DOM rendering system, JSX rendering capabilities, asynchronous rendering pipeline (like React Fiber), and more. This makes Stencil components more performant while maintaining full compatibility with plain Custom Elements. Think of Stencil as creating pre-baked Custom Elements as if you wrote in those features yourself.
-
-## Getting Started
-
-To create a new project using an interactive cli, run:
-
-```bash
-npm init stencil
+```
+npm install @stencil/sass --save-dev
 ```
 
-To start developing your new Stencil project, run:
+Next, within the project's stencil config, import the plugin and add it to the config's `plugins` property:
 
-```bash
-npm start
+#### stencil.config.ts
+
+```ts
+import { Config } from "@stencil/core";
+import { sass } from "@stencil/sass";
+
+export const config: Config = {
+  plugins: [sass()]
+};
 ```
 
-## Creating components
+During development, this plugin will kick-in for `.scss` or `.sass` style urls, and precompile them to CSS.
 
-Stencil components are plain ES6/TypeScript classes with some decorator metadata.
+## Options
 
-Create new components by creating files with a `.tsx` extension, such as `my-component.tsx`, and place them in `src/components`.
+Sass options can be passed to the plugin within the stencil config, which are used directly by `sass`. Please reference [sass documentation](https://www.npmjs.com/package/sass) for all available options. Note that this plugin automatically adds the component's directory to the `includePaths` array.
 
-```typescript
-import { Component, Prop } from "@stencil/core";
+### Inject Globals Sass Paths
 
-@Component({
-  tag: "my-component",
-  styleUrl: "my-component.css"
-})
-export class MyComponent {
-  @Prop() first: string;
-
-  @Prop() last: string;
-
-  render() {
-    return (
-      <div>
-        Hello, my name is {this.first} {this.last}
-      </div>
-    );
-  }
-}
-```
-
-Note: the `.tsx` extension is required, as this is the standard for TypeScript classes that use JSX.
-
-To use this component, just use it like any other HTML element:
-
-```html
-<my-component first="Stencil" last="JS"></my-component>
-```
-
-## Naming Components
-
-When creating new component tags, we recommend _not_ using `stencil` in the component name (ex: `<stencil-datepicker>`). This is because the generated component has little to nothing to do with Stencil; it's just a web component!
-
-Instead, use a prefix that fits your company or any name for a group of related components. For example, all of the [Ionic](https://ionicframework.com/docs/) generated web components use the prefix `ion`.
-
-## Hosting the app
-
-Stencil components run directly in the browser through script includes just like normal Custom Elements (because they are just that!), and run by using the tag just like any other HTML component:
-
-Here's an example `index.html` file that runs a Stencil app:
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>My App</title>
-    <script src="build/app.js"></script>
-  </head>
-  <body>
-    <my-component first="Stencil" last="JS"></my-component>
-  </body>
-</html>
-```
-
-## API
-
-The API for stencil closely mirrors the API for Custom Elements v1.
-
-### Components
-
-| Decorator      | Description                                                                            |
-| -------------- | -------------------------------------------------------------------------------------- |
-| `@Component()` | Indicate a class is a Stencil component.                                               |
-|                |                                                                                        |
-| `@Prop()`      | Creates a property that will exist on the element and be data-bound to this component. |
-| `@State()`     | Creates a local state variable that will not be placed on the element.                 |
-| `@Method()`    | Expose specific methods to be publicly accessible.                                     |
-
-## Why "Stencil?"
-
-A Stencil is a tool artists use for drawing perfect shapes easily. We want Stencil to be a similar tool for web developers: a tool that helps web developers build powerful Web Components and apps that use them, but without creating non-standard runtime requirements.
-
-Stencil is a tool developers use to create Web Components with some powerful features baked in, but it gets out of the way at runtime.
-
-[Using Web Components in Ionic - Polymer Summit 2017](https://youtu.be/UfD-k7aHkQE)
-
-## Browser Support
-
-Web Components, specifically Custom Elements, are natively supported in Chrome and Safari and are coming to both Edge and Firefox. A dynamic polyfill loader is already included in order to only load the polyfills for the browsers that are missing specific features.
-
-- Chrome (and all Chromium based browsers)
-- Safari
-- Edge
-- Firefox
-- IE 11
-
-## Polyfills
-
-Stencil includes a subset of the `core-js` polyfills for old browsers like IE11, `fetch` and conditionally downloads the [Custom Elements v1](https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements) only when it's needed for modern browsers (EDGE and old versions of Firefox.)
-
-### Internet Explorer 11
-
-Browser that does not support native ESM (at the moment, only IE11 and older) will download a subset of [`core-js`](https://github.com/zloirock/core-js).
-
-This subset is generated using the [`core-js-builder` tool](https://github.com/zloirock/core-js/tree/master/packages/core-js-builder) with the following configuration:
+The `injectGlobalPaths` config is an array of paths that automatically get added as `@import` declarations to all components. This can be useful to inject Sass variables, mixins and functions to override defaults of external collections. For example, apps can override default Sass variables of [Ionic components](https://www.npmjs.com/package/@ionic/core). Relative paths within `injectGlobalPaths` should be relative to the stencil config file.
 
 ```js
-require("core-js-builder")({
-  targets: "ie 11",
-  modules: ["es", "web.url", "web.url.to-json", "web.url-search-params"],
-  blacklist: [
-    "es.math",
-    "es.date",
-    "es.symbol",
-    "es.array-buffer",
-    "es.data-view",
-    "es.typed-array",
-    "es.reflect"
+exports.config = {
+  plugins: [
+    sass({
+      injectGlobalPaths: [
+        "src/globals/variables.scss",
+        "src/globals/mixins.scss"
+      ]
+    })
   ]
-});
+};
 ```
 
-In addition, the following set of polyfills are also included:
-
-- [Promise](https://github.com/stefanpenner/es6-promise)
-- [fetch()](https://github.com/github/fetch)
-- [CSS variables](https://github.com/ionic-team/stencil/tree/master/src/client/polyfills/css-shim): We implemented out own CSS variables polyfill that integrates into the Stencil¡s run
-
-### All browsers
-
-Some modern browsers today like Edge does not include native support for web components, in that case we conditionally load the [Custom Elements v1](https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements) polyfill.
+Note that each of these files are always added to each component, so in most cases they shouldn't contain CSS because it'll get duplicated in each component. Instead, `injectGlobalPaths` should only be used for Sass variables, mixins and functions, but does not contain any CSS.
 
 ## License
 
