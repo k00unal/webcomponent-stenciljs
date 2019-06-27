@@ -23,6 +23,10 @@ export namespace Components {
     */
     'middle': string;
   }
+  interface WcSidedrawer {
+    'open': boolean;
+    'titlename': string;
+  }
 }
 
 declare global {
@@ -33,8 +37,15 @@ declare global {
     prototype: HTMLMyComponentElement;
     new (): HTMLMyComponentElement;
   };
+
+  interface HTMLWcSidedrawerElement extends Components.WcSidedrawer, HTMLStencilElement {}
+  var HTMLWcSidedrawerElement: {
+    prototype: HTMLWcSidedrawerElement;
+    new (): HTMLWcSidedrawerElement;
+  };
   interface HTMLElementTagNameMap {
     'my-component': HTMLMyComponentElement;
+    'wc-sidedrawer': HTMLWcSidedrawerElement;
   }
 }
 
@@ -53,9 +64,14 @@ declare namespace LocalJSX {
     */
     'middle'?: string;
   }
+  interface WcSidedrawer extends JSXBase.HTMLAttributes<HTMLWcSidedrawerElement> {
+    'open'?: boolean;
+    'titlename'?: string;
+  }
 
   interface IntrinsicElements {
     'my-component': MyComponent;
+    'wc-sidedrawer': WcSidedrawer;
   }
 }
 
