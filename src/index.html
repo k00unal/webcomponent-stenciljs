@@ -19,7 +19,7 @@
     ></my-component>
     <div class="hello">I'm Stencil 'Don't call me a framework' JS</div> -->
 
-    <button id="side-drawer-btn">Open side Menu</button>
+    <!-- <button id="side-drawer-btn">Open side Menu</button>
     <wc-sidedrawer titlename="Main Menu">
       <nav class="side-nav">
         <ul class="side-nav__list">
@@ -34,20 +34,36 @@
           </li>
         </ul>
       </nav>
-    </wc-sidedrawer>
+    </wc-sidedrawer> -->
+
+    <button id="modal-btn">Modal button</button>
+    <!-- <my-backdrop></my-backdrop> -->
+    <my-modal
+      class="wc-modal"
+      name="Simple modal"
+      bodytxt="This is a simple Modal"
+    ></my-modal>
 
     <script>
-      const sideDrawer = document.querySelector("wc-sidedrawer");
-      const sideDrawerButton = document.querySelector("#side-drawer-btn");
-      sideDrawerButton.addEventListener("click", () => {
-        if (!sideDrawer.open) {
-          sideDrawer.open = true;
-        }
+      // const sideDrawer = document.querySelector("wc-sidedrawer");
+      // const sideDrawerButton = document.querySelector("#side-drawer-btn");
+      // sideDrawerButton.addEventListener("click", () => {
+      //   if (!sideDrawer.open) {
+      //     sideDrawer.open = true;
+      //   }
+      // });
+      // setTimeout(() => {
+      //   // sidedrawer.titlename = "It Changed";
+      //   // sidedrawer.setAttribute("titlename", "It changed via Attribute");
+      // }, 3000);
+
+      // modal
+      const modal = document.querySelector("my-modal");
+      const modalBtn = document.querySelector("#modal-btn");
+      modalBtn.addEventListener("click", function() {
+        // modal.style.display = "block";
+        modal.open();
       });
-      setTimeout(() => {
-        // sidedrawer.titlename = "It Changed";
-        // sidedrawer.setAttribute("titlename", "It changed via Attribute");
-      }, 3000);
     </script>
   </body>
 </html>

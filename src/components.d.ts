@@ -9,6 +9,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 
 
 export namespace Components {
+  interface MyBackdrop {}
   interface MyComponent {
     /**
     * The first name
@@ -23,6 +24,11 @@ export namespace Components {
     */
     'middle': string;
   }
+  interface MyModal {
+    'bodytxt': string;
+    'name': string;
+    'open': () => Promise<void>;
+  }
   interface WcSidedrawer {
     'open': boolean;
     'titlename': string;
@@ -32,10 +38,22 @@ export namespace Components {
 declare global {
 
 
+  interface HTMLMyBackdropElement extends Components.MyBackdrop, HTMLStencilElement {}
+  var HTMLMyBackdropElement: {
+    prototype: HTMLMyBackdropElement;
+    new (): HTMLMyBackdropElement;
+  };
+
   interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {}
   var HTMLMyComponentElement: {
     prototype: HTMLMyComponentElement;
     new (): HTMLMyComponentElement;
+  };
+
+  interface HTMLMyModalElement extends Components.MyModal, HTMLStencilElement {}
+  var HTMLMyModalElement: {
+    prototype: HTMLMyModalElement;
+    new (): HTMLMyModalElement;
   };
 
   interface HTMLWcSidedrawerElement extends Components.WcSidedrawer, HTMLStencilElement {}
@@ -44,12 +62,15 @@ declare global {
     new (): HTMLWcSidedrawerElement;
   };
   interface HTMLElementTagNameMap {
+    'my-backdrop': HTMLMyBackdropElement;
     'my-component': HTMLMyComponentElement;
+    'my-modal': HTMLMyModalElement;
     'wc-sidedrawer': HTMLWcSidedrawerElement;
   }
 }
 
 declare namespace LocalJSX {
+  interface MyBackdrop extends JSXBase.HTMLAttributes<HTMLMyBackdropElement> {}
   interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {
     /**
     * The first name
@@ -64,13 +85,19 @@ declare namespace LocalJSX {
     */
     'middle'?: string;
   }
+  interface MyModal extends JSXBase.HTMLAttributes<HTMLMyModalElement> {
+    'bodytxt'?: string;
+    'name'?: string;
+  }
   interface WcSidedrawer extends JSXBase.HTMLAttributes<HTMLWcSidedrawerElement> {
     'open'?: boolean;
     'titlename'?: string;
   }
 
   interface IntrinsicElements {
+    'my-backdrop': MyBackdrop;
     'my-component': MyComponent;
+    'my-modal': MyModal;
     'wc-sidedrawer': WcSidedrawer;
   }
 }
