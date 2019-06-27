@@ -29,6 +29,7 @@ export namespace Components {
     'name': string;
     'open': () => Promise<void>;
   }
+  interface SimpleSlider {}
   interface WcSidedrawer {
     'open': boolean;
     'titlename': string;
@@ -56,6 +57,12 @@ declare global {
     new (): HTMLMyModalElement;
   };
 
+  interface HTMLSimpleSliderElement extends Components.SimpleSlider, HTMLStencilElement {}
+  var HTMLSimpleSliderElement: {
+    prototype: HTMLSimpleSliderElement;
+    new (): HTMLSimpleSliderElement;
+  };
+
   interface HTMLWcSidedrawerElement extends Components.WcSidedrawer, HTMLStencilElement {}
   var HTMLWcSidedrawerElement: {
     prototype: HTMLWcSidedrawerElement;
@@ -65,6 +72,7 @@ declare global {
     'my-backdrop': HTMLMyBackdropElement;
     'my-component': HTMLMyComponentElement;
     'my-modal': HTMLMyModalElement;
+    'simple-slider': HTMLSimpleSliderElement;
     'wc-sidedrawer': HTMLWcSidedrawerElement;
   }
 }
@@ -89,6 +97,7 @@ declare namespace LocalJSX {
     'bodytxt'?: string;
     'name'?: string;
   }
+  interface SimpleSlider extends JSXBase.HTMLAttributes<HTMLSimpleSliderElement> {}
   interface WcSidedrawer extends JSXBase.HTMLAttributes<HTMLWcSidedrawerElement> {
     'open'?: boolean;
     'titlename'?: string;
@@ -98,6 +107,7 @@ declare namespace LocalJSX {
     'my-backdrop': MyBackdrop;
     'my-component': MyComponent;
     'my-modal': MyModal;
+    'simple-slider': SimpleSlider;
     'wc-sidedrawer': WcSidedrawer;
   }
 }
