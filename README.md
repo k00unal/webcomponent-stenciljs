@@ -31,3 +31,5 @@ Then in another terminal Run
 2. npm run test
 
 ```
+
+I have intentionally failing one test so we can see actual comaparison how jest works.
