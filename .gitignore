@@ -63,3 +63,4 @@ typings/
 #runtime output directorys
 dist/
 www/
+src/index-copy.html
