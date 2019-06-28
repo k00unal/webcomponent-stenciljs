@@ -2,7 +2,7 @@
 
 Source code For tutorial for creating Web Components with Stencil js
 
-# add global.scss
+# ADD Jest Library
 
 To add Jest all you need to do in stencil is to type
 
