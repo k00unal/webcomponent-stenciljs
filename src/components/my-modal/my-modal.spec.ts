@@ -37,20 +37,20 @@ beforeAll(async () => {
   // launch browser
   browser = await puppeteer.launch({
     headless: false, // headless mode set to false so browser opens up with visual feedback
-    slowMo: 250 // how slow actions should be
+    slowMo: 80 // how slow actions should be
   });
   // creates a new page in the opened browser
   page = await browser.newPage();
 });
 
 describe("E2E browser modal component check", () => {
-  test("Should check for h1 tag content", async () => {
+  it("Should check for h1 tag content", async () => {
     await page.goto("http://localhost:3333/");
     await page.click("#modal-btn");
     const finalText = await page.$eval("h1", el => el.textContent);
     expect(finalText).toBe("Simple modal");
   }, 10000);
-  test("Should check for h1 tag content", async () => {
+  it("Should check for h1 tag content", async () => {
     await page.goto("http://localhost:3333/");
     await page.click("#modal-btn");
     const finalText = await page.$eval("p", el => el.textContent);

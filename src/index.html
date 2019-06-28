@@ -13,6 +13,22 @@
     <script nomodule src="/build/webcomponent-stenciljs.js"></script>
   </head>
   <body>
-    <simple-slider></simple-slider>
+    <!-- <my-backdrop></my-backdrop> -->
+    <button id="modal-btn">Modal button</button>
+    <my-modal
+      class="wc-modal"
+      name="Simple modal"
+      bodytxt="This is a simple Modal"
+    ></my-modal>
+
+    <script>
+      // modal
+      const modal = document.querySelector("my-modal");
+      const modalBtn = document.querySelector("#modal-btn");
+      modalBtn.addEventListener("click", function() {
+        // modal.style.display = "block";
+        modal.open();
+      });
+    </script>
   </body>
 </html>

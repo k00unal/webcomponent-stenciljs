@@ -4,28 +4,30 @@ Source code For tutorial for creating Web Components with Stencil js
 
 # add global.scss
 
-Add to the heads of html file as :
+To add Jest all you need to do in stencil is to type
 
 ```
-<link href="/build/webcomponent-stenciljs.css" rel="stylesheet" />
+npm run test
 
 ```
 
-Then add thes changes to stencil.config.ts
+```
+installing dependencies: @types/jest, jest, jest-cli, @types/puppeteer, puppeteer
 
 ```
-plugins: [
-    sass(),
-    postcss({
-      plugins: [
-        autoprefixer({
-          browsers: ["last 6 versions"],
-          cascade: false
-        })
-      ]
-    })
-  ],
-  globalStyle: "src/global.scss"
-};
+
+All dependency will be installed autmatically.
+
+Also to run the E2E Test run :
+
+```
+1. npm run start
+
+```
+
+Then in another terminal Run
+
+```
+2. npm run test
 
 ```
