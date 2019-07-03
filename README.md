@@ -2,77 +2,47 @@
 
 Source code For tutorial for creating Web Components with Stencil js
 
-# Storybook for HTML
+# Webpack Setup
 
-# Manual setup
+## for storybook hotmodule reloading
 
-Add @storybook/html to your project. To do that, run:
-
-```
-npm install @storybook/html --save-dev
+Add copy-webpack-plugin to your project. To do that, run:
 
 ```
-
-Add @babel/core and babel-loader
+npm install copy-webpack-plugin --save-dev
 
 ```
-npm install babel-loader @babel/core --save-dev
+
+Add write-file-webpack-plugin also
+
+```
+npm install write-file-webpack-plugin --save-dev
+
+```
+
+Add npm-run-all also to run stencil and storybook together
+
+```
+npm install npm-run-all --save-dev
 
 ```
 
 Step 2: Add a npm script
-Then add the following NPM script to your package.json in order to start the storybook later in this guide:
+Then add the following NPM script to your package.json in order to start the storybook in parellel with stencil but without serving stencil:
 
 ```
 {
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook -s www"
+    "story": "npm-run-all --parallel start-stencil storybook",
   }
 }
 
 ```
 
-Manually create .storybook folder adjecent to src folder
-
-Step 3: Create the config file
-For a basic Storybook configuration, the only thing you need to do is tell Storybook where to find stories.
-
-To do that, create a file at .storybook/config.js with the following content:
+Finally: Run your Story
+Now everything is ready. Run your storybook along with stencil with one go:
 
 ```
-import { configure } from '@storybook/html';
-
-function loadStories() {
-  const req = require.context('../src', true, /\.stories\.js$/);
-  req.keys().forEach(filename => req(filename));
-}
-
-configure(loadStories, module);
-
-```
-
-Requiring all your stories becomes bothersome real quick, so you can use this to load all stories matching a glob.
-
-Step 4: Write your stories
-Now create a ..src/components/my-modal/my-modal.stories.js file, and write your first story like this:
-
-```
-import { storiesOf } from '@storybook/html';
-
-storiesOf('Button', module)
-  .add('with text', () => '<button class="btn">Hello World</button>')
-  .add('with emoji', () => {
-    const button = document.createElement('button');
-    button.innerText = '😀 😎 👍 💯';
-    return button;
-  });
-
-```
-
-Finally: Run your Storybook
-Now everything is ready. Run your storybook with:
-
-```
-npm run storybook
+npm run story
 
 ```

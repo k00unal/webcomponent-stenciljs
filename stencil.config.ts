@@ -23,8 +23,8 @@ export const config: Config = {
     postcss({
       plugins: [
         autoprefixer({
-          browsers: ["last 6 versions"],
-          cascade: false
+          // browsers: ["last 6 versions"],
+          // cascade: false
         })
       ]
     })

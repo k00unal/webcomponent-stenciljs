@@ -30,6 +30,7 @@ export namespace Components {
     'open': () => Promise<void>;
   }
   interface SimpleSlider {}
+  interface TestComponent {}
   interface WcSidedrawer {
     'open': boolean;
     'titlename': string;
@@ -63,6 +64,12 @@ declare global {
     new (): HTMLSimpleSliderElement;
   };
 
+  interface HTMLTestComponentElement extends Components.TestComponent, HTMLStencilElement {}
+  var HTMLTestComponentElement: {
+    prototype: HTMLTestComponentElement;
+    new (): HTMLTestComponentElement;
+  };
+
   interface HTMLWcSidedrawerElement extends Components.WcSidedrawer, HTMLStencilElement {}
   var HTMLWcSidedrawerElement: {
     prototype: HTMLWcSidedrawerElement;
@@ -73,6 +80,7 @@ declare global {
     'my-component': HTMLMyComponentElement;
     'my-modal': HTMLMyModalElement;
     'simple-slider': HTMLSimpleSliderElement;
+    'test-component': HTMLTestComponentElement;
     'wc-sidedrawer': HTMLWcSidedrawerElement;
   }
 }
@@ -98,6 +106,7 @@ declare namespace LocalJSX {
     'name'?: string;
   }
   interface SimpleSlider extends JSXBase.HTMLAttributes<HTMLSimpleSliderElement> {}
+  interface TestComponent extends JSXBase.HTMLAttributes<HTMLTestComponentElement> {}
   interface WcSidedrawer extends JSXBase.HTMLAttributes<HTMLWcSidedrawerElement> {
     'open'?: boolean;
     'titlename'?: string;
@@ -108,6 +117,7 @@ declare namespace LocalJSX {
     'my-component': MyComponent;
     'my-modal': MyModal;
     'simple-slider': SimpleSlider;
+    'test-component': TestComponent;
     'wc-sidedrawer': WcSidedrawer;
   }
 }

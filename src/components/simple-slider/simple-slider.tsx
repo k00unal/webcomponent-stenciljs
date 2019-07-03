@@ -18,20 +18,18 @@ export class SimpleSlider {
   }
 
   render() {
-    return (
-      [
-        <ul id="slides">
-          <li class="slide showing">Slide 1</li>
-          <li class="slide">Slide 2</li>
-          <li class="slide">Slide 3</li>
-          <li class="slide">Slide 4</li>
-          <li class="slide">Slide 5</li>
-        </ul>,
-        <div clas="slidernav">
-          <div id="arrow-left" class="arrow" />
-          <div id="arrow-right" class="arrow" />
-        </div>
-
-      ];
+    return [
+      <ul id="slides">
+        <li class="slide showing">Slide 1</li>
+        <li class="slide">Slide 2</li>
+        <li class="slide">Slide 3</li>
+        <li class="slide">Slide 4</li>
+        <li class="slide">Slide 5</li>
+      </ul>,
+      <div class="slidernav">
+        <div id="arrow-left" class="arrow" />
+        <div id="arrow-right" class="arrow" />
+      </div>
+    ];
   }
 }
