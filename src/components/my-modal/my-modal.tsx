@@ -7,8 +7,8 @@ import { Component, h, Method, Element, Prop } from "@stencil/core";
 export class MyModal {
   @Element() modalEl: HTMLElement;
 
-  @Prop() name: string;
-  @Prop() bodytxt: string;
+  @Prop() name: string = "simple modal";
+  @Prop() bodytxt: string = "This is a simple Modal";
 
   @Method()
   async open() {
@@ -18,18 +18,31 @@ export class MyModal {
   hideButtonHandler() {
     this.modalEl.style.display = "none";
   }
+  showButtonHandler() {
+    const modal = document.querySelector(".wc-modal__wrap") as HTMLElement;
+    modal.style.display = "block";
+  }
+
+  componentDidLoad() {
+    console.log("Component has been rendered");
+  }
 
   render() {
     return (
-      <div class="wc-modal__wrap">
-        <button
-          class="wc-modal__cls"
-          onClick={this.hideButtonHandler.bind(this)}
-        >
-          X
+      <div>
+        <button id="modal-btn" onClick={this.showButtonHandler.bind(this)}>
+          Modal button
         </button>
-        <h1>{this.name}</h1>
-        <p>{this.bodytxt}</p>
+        <div class="wc-modal__wrap">
+          <button
+            class="wc-modal__cls"
+            onClick={this.hideButtonHandler.bind(this)}
+          >
+            X
+          </button>
+          <h1>{this.name}</h1>
+          <p>{this.bodytxt}</p>
+        </div>
       </div>
     );
   }

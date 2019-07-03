@@ -2,69 +2,42 @@
 
 Source code For tutorial for creating Web Components with Stencil js
 
-# Webpack Setup
+# Storybook Viewport Addon
 
-## for storybook hotmodule reloading
+Storybook Viewport Addon allows your stories to be displayed in different sizes and layouts in [Storybook](https://storybook.js.org). This helps build responsive components inside of Storybook.
 
-Add copy-webpack-plugin to your project. To do that, run:
+[Framework Support](https://github.com/storybookjs/storybook/blob/master/ADDONS_SUPPORT.md)
 
-```
-npm install copy-webpack-plugin --save-dev
+![Screenshot](https://github.com/storybookjs/storybook/blob/master/addons/viewport/docs/viewport.png)
 
-```
+## Installation
 
-Add write-file-webpack-plugin also
+Install the following npm module:
 
-```
-npm install write-file-webpack-plugin --save-dev
-
+```sh
+npm i --save-dev @storybook/addon-viewport
 ```
 
-Add npm-run-all also to run stencil and storybook together
+or with yarn:
 
-```
-npm install npm-run-all --save-dev
-
-```
-
-Step 2: Add a npm script
-Then add the following NPM script to your package.json in order to start the storybook in parellel with stencil but without serving stencil:
-
-```
-{
-  "scripts": {
-    "story": "npm-run-all --parallel start-stencil storybook",
-  }
-}
-
+```sh
+yarn add -D @storybook/addon-viewport
 ```
 
-Note: For Removing Autoprefixer Browserlist Error in console
-add the following NPM script to your package.json
+Then, add following content to .storybook/addons.js
 
-```
-{
-  "browserslist": [
-    "last 2 version",
-    "> 2%"
-  ],
-}
-
+```js
+import "@storybook/addon-viewport/register";
 ```
 
-Then Remove the Autoprefixer option :
+You should now be able to see the viewport addon icon in the the toolbar at the top of the screen.
 
-```
-plugins: [
-        autoprefixer()
-      ]
+## Configuration
 
-```
+The viewport addon is configured by story parameters with the `viewport` key. To configure globally, import `addParameters` from your app layer in your `config.js` file.
 
-Finally: Run your Story
-Now everything is ready. Run your storybook along with stencil with one go:
+```js
+import { addParameters } from "@storybook/react";
 
-```
-npm run story
-
+addParameters({ viewport: { viewports: newViewports } });
 ```

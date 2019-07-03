@@ -28,6 +28,7 @@
     "@stencil/core": "^1.0.7",
     "@stencil/postcss": "^1.0.1",
     "@stencil/sass": "^1.0.1",
+    "@storybook/addon-viewport": "^5.1.9",
     "@storybook/html": "^5.1.9",
     "@types/autoprefixer": "^9.5.0",
     "@types/jest": "24.0.15",
