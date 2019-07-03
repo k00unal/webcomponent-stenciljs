@@ -39,6 +39,28 @@ Then add the following NPM script to your package.json in order to start the sto
 
 ```
 
+Note: For Removing Autoprefixer Browserlist Error in console
+add the following NPM script to your package.json
+
+```
+{
+  "browserslist": [
+    "last 2 version",
+    "> 2%"
+  ],
+}
+
+```
+
+Then Remove the Autoprefixer option :
+
+```
+plugins: [
+        autoprefixer()
+      ]
+
+```
+
 Finally: Run your Story
 Now everything is ready. Run your storybook along with stencil with one go:
 
