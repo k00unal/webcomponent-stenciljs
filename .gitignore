@@ -64,3 +64,6 @@ typings/
 dist/
 www/
 src/index-copy.html
+
+#generated when --es5 for ie11 is needed
+loader

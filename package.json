@@ -17,10 +17,12 @@
   "scripts": {
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
-    "start-stencil": "stencil build --dev --watch",
+    "start-stencil": "stencil build --dev --watch --serve",
+    "start-stencil-ie": "stencil build --dev --watch --serve --es5",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
     "story": "npm-run-all --parallel start-stencil storybook",
+    "story-ie": "npm-run-all --parallel start-stencil-ie storybook",
     "storybook": "start-storybook -p 9001 -c .storybook -s www"
   },
   "devDependencies": {
@@ -28,7 +30,9 @@
     "@stencil/core": "^1.0.7",
     "@stencil/postcss": "^1.0.1",
     "@stencil/sass": "^1.0.1",
+    "@storybook/addon-actions": "^5.1.9",
     "@storybook/addon-viewport": "^5.1.9",
+    "@storybook/addons": "^5.1.9",
     "@storybook/html": "^5.1.9",
     "@types/autoprefixer": "^9.5.0",
     "@types/jest": "24.0.15",
