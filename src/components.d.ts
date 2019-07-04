@@ -30,6 +30,7 @@ export namespace Components {
     'open': () => Promise<void>;
   }
   interface SimpleSlider {}
+  interface StarRating {}
   interface TestComponent {}
   interface WcSidedrawer {
     'open': boolean;
@@ -64,6 +65,12 @@ declare global {
     new (): HTMLSimpleSliderElement;
   };
 
+  interface HTMLStarRatingElement extends Components.StarRating, HTMLStencilElement {}
+  var HTMLStarRatingElement: {
+    prototype: HTMLStarRatingElement;
+    new (): HTMLStarRatingElement;
+  };
+
   interface HTMLTestComponentElement extends Components.TestComponent, HTMLStencilElement {}
   var HTMLTestComponentElement: {
     prototype: HTMLTestComponentElement;
@@ -80,6 +87,7 @@ declare global {
     'my-component': HTMLMyComponentElement;
     'my-modal': HTMLMyModalElement;
     'simple-slider': HTMLSimpleSliderElement;
+    'star-rating': HTMLStarRatingElement;
     'test-component': HTMLTestComponentElement;
     'wc-sidedrawer': HTMLWcSidedrawerElement;
   }
@@ -106,6 +114,9 @@ declare namespace LocalJSX {
     'name'?: string;
   }
   interface SimpleSlider extends JSXBase.HTMLAttributes<HTMLSimpleSliderElement> {}
+  interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
+    'onStarRating'?: (event: CustomEvent<any>) => void;
+  }
   interface TestComponent extends JSXBase.HTMLAttributes<HTMLTestComponentElement> {}
   interface WcSidedrawer extends JSXBase.HTMLAttributes<HTMLWcSidedrawerElement> {
     'open'?: boolean;
@@ -117,6 +128,7 @@ declare namespace LocalJSX {
     'my-component': MyComponent;
     'my-modal': MyModal;
     'simple-slider': SimpleSlider;
+    'star-rating': StarRating;
     'test-component': TestComponent;
     'wc-sidedrawer': WcSidedrawer;
   }
