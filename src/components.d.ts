@@ -29,7 +29,13 @@ export namespace Components {
     'name': string;
     'open': () => Promise<void>;
   }
-  interface SimpleSlider {}
+  interface SimpleSlider {
+    'fifthslide': string;
+    'firstslide': string;
+    'fourthslide': string;
+    'secondslide': string;
+    'thirdslide': string;
+  }
   interface StarRating {}
   interface TestComponent {}
   interface WcSidedrawer {
@@ -113,7 +119,13 @@ declare namespace LocalJSX {
     'bodytxt'?: string;
     'name'?: string;
   }
-  interface SimpleSlider extends JSXBase.HTMLAttributes<HTMLSimpleSliderElement> {}
+  interface SimpleSlider extends JSXBase.HTMLAttributes<HTMLSimpleSliderElement> {
+    'fifthslide'?: string;
+    'firstslide'?: string;
+    'fourthslide'?: string;
+    'secondslide'?: string;
+    'thirdslide'?: string;
+  }
   interface StarRating extends JSXBase.HTMLAttributes<HTMLStarRatingElement> {
     'onStarRating'?: (event: CustomEvent<any>) => void;
   }
